@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "film")
 public class Film {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "film_id")
     private int id;
 
@@ -17,6 +18,9 @@ public class Film {
 
     @Column(name = "release_year")
     private short releaseYear;
+
+    @Column(name = "language_id") 
+    private short languageId;
 
     public Film() {
     }
@@ -37,8 +41,28 @@ public class Film {
         return releaseYear;
     }
 
+    public short getLanguageId() { 
+        return languageId;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public void setReleaseYear(short releaseYear) {
+        this.releaseYear = releaseYear;
+    }
+
+    public void setLanguageId(short languageId) { 
+        this.languageId = languageId;
+    }
+
     @Override
     public String toString() {
-        return String.format("[%d] %s (%d) - %s", id, title, releaseYear, rating);
+        return String.format("[%d] %s (%d) - %s [Lang: %d]", id, title, releaseYear, rating, languageId);
     }
 }
